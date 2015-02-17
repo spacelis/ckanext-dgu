@@ -2,7 +2,6 @@ import os, logging
 import ckan.logic.action.create as create
 import ckan.logic.action.update as update
 import ckan.logic.action.get as get
-from ckan.logic.converters import date_to_db, date_to_form, convert_to_extras, convert_from_extras
 from ckan.logic import tuplize_dict, clean_dict, parse_params
 import ckan.logic.schema as default_schema
 from ckan.logic.schema import group_form_schema
@@ -10,7 +9,7 @@ import ckan.logic.validators as val
 from ckan.lib.base import BaseController, model, abort
 from ckan.lib.base import redirect, config, h
 from ckan.lib.package_saver import PackageSaver
-from ckan.lib.field_types import DateType, DateConvertError
+from ckanext.dgu.forms.field_types import DateType, DateConvertError
 from ckan.lib.navl.dictization_functions import Invalid
 from ckan.lib.navl.dictization_functions import validate, missing
 from ckan.lib.navl.dictization_functions import DataError, flatten_dict, unflatten
@@ -28,6 +27,19 @@ from ckanext.dgu.forms.validators import validate_publisher_category, categories
 
 log = logging.getLogger(__name__)
 
+def date_to_db(value, context):
+    try:
+        value = DateType.form_to_db(value)
+    except DateConvertError, e:
+        raise Invalid(str(e))
+    return value
+
+def date_to_form(value, context):
+    try:
+        value = DateType.db_to_form(value)
+    except DateConvertError, e:
+        raise Invalid(str(e))
+    return value
 
 def convert_to_extras(key, data, errors, context):
 
