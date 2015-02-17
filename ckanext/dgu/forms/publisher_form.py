@@ -8,7 +8,6 @@ from ckan.logic.schema import group_form_schema
 import ckan.logic.validators as val
 from ckan.lib.base import BaseController, model, abort
 from ckan.lib.base import redirect, config, h
-from ckan.lib.package_saver import PackageSaver
 from ckanext.dgu.forms.field_types import DateType, DateConvertError
 from ckan.lib.navl.dictization_functions import Invalid
 from ckan.lib.navl.dictization_functions import validate, missing
