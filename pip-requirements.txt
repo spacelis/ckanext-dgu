@@ -38,6 +38,7 @@
 
 # Copied from ckanext-spatial's pip-requirements.txt:
 GeoAlchemy>=0.6
+formalchemy
 Shapely>=1.2.13
 owslib
 lxml<=2.2.99
