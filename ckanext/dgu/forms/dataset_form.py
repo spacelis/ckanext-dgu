@@ -2,7 +2,7 @@
 import json
 
 from ckan.lib.base import c, model
-from ckan.lib.field_types import DateType, DateConvertError
+from ckanext.dgu.forms.field_types import DateType, DateConvertError
 from ckan.lib.navl.dictization_functions import Invalid
 
 import ckan.logic.schema as default_schema

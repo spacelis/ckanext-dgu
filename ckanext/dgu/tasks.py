@@ -15,7 +15,7 @@ import messytables
 
 from ckan.lib.celery_app import celery
 import ckan.lib.munge as munge
-from ckan.lib.field_types import DateType, DateConvertError
+from ckanext.dgu.forms.field_types import DateType, DateConvertError
 from ckanclient import CkanClient, CkanApiError
 
 def _process_upload(context, data):

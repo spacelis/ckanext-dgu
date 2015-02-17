@@ -709,7 +709,7 @@ def get_resource_fields(resource, pkg_extras):
 def get_package_fields(package, pkg_extras, dataset_was_harvested,
                        is_location_data, dataset_is_from_ns_pubhub, is_local_government_data):
     from ckan.lib.base import h
-    from ckan.lib.field_types import DateType
+    from ckanext.dgu.forms.field_types import DateType
     from ckanext.dgu.schema import GeoCoverageType
     from ckanext.dgu.lib.resource_helpers import DatasetFieldNames, DisplayableFields
     from ckanext.dgu.schema import THEMES
@@ -1299,7 +1299,7 @@ def are_legacy_extras(data):
     return are_legacy_extras
 
 def timeseries_resources():
-    from ckan.lib.field_types import DateType
+    from ckanext.dgu.forms.field_types import DateType
     unsorted = c.pkg_dict.get('timeseries_resources', [])
     get_iso_date = lambda resource: DateType.form_to_db(resource.get('date'),may_except=False)
     return sorted(unsorted, key=get_iso_date)
@@ -1855,7 +1855,7 @@ def render_db_date(db_date_str):
          '2014' -> '2014'
     Non-parsing strings get '' returned.
     '''
-    from ckan.lib.field_types import DateType, DateConvertError
+    from ckanext.dgu.forms.field_types import DateType, DateConvertError
     try:
         return DateType.db_to_form(db_date_str)
     except DateConvertError:
@@ -2017,7 +2017,7 @@ def has_related_apps(pid):
     return len(list(get_related_apps(pid))) > 0
 
 def parse_date(date_string):
-    from ckan.lib.field_types import DateType, DateConvertError
+    from ckanext.dgu.forms.field_types import DateType, DateConvertError
 
     try:
         return DateType.parse_timedate(date_string, 'form')

@@ -5,7 +5,7 @@ import os
 import re
 from datetime import datetime
 import csv
-from ckan.lib.field_types import DateType,DateConvertError
+from ckanext.dgu.forms.field_types import DateType,DateConvertError
 
 class CleanResourceDates(CkanCommand):
     """
@@ -140,9 +140,9 @@ class CleanResourceDates(CkanCommand):
         # Fixed by hand overrides everything
         instant_win = fixed_by_hand.get(datestring)
         if instant_win is not None:
-            return instant_win 
-        # Perfect dates are already in unambiguous full ISO, eg. 2013-10-21. 
-        # 2011-12 is NOT a perfect date. It needs cleaning, but it already conforms to schema. 
+            return instant_win
+        # Perfect dates are already in unambiguous full ISO, eg. 2013-10-21.
+        # 2011-12 is NOT a perfect date. It needs cleaning, but it already conforms to schema.
         is_perfect = self.regex_year_month_day.match(datestring)
         if is_perfect:
             return datestring
